@@ -1,20 +1,32 @@
 package panels;
 
 
-
-
-
+import mainprogram.MainFrame;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.XMLEncoder;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
+/**
+ *
+ */
 public class CreationPanel extends JPanel
 {
     private JPanel p;
     private JTextField questionField;
     private JTextField answerField;
     private String[] dummyCred = {"TATA65","TDDD78"};
+
+    private Border textFieldBorder = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+    private JComboBox box;
 
     public CreationPanel() {
         displayTextFields();
@@ -23,29 +35,54 @@ public class CreationPanel extends JPanel
     private void displayTextFields() {
         setLayout(new MigLayout());
 
-        JComboBox box = new JComboBox(dummyCred);
+        box = new JComboBox(dummyCred);
         box.setSelectedIndex(1);
-
+        JButton categoryButton = new JButton("Add");
+        categoryButton.addActionListener(new ButtonClicked());
+	JButton createButton = new JButton("Create question");
+	createButton.addActionListener(new ButtonClicked());
         JLabel category = new JLabel("What cource?");
         JLabel newCategory = new JLabel("New Category");
         JLabel questName = new JLabel("The question");
         JLabel answerName = new JLabel("The answer");
-        JButton createButton = new JButton("Create question");
-        JButton quizButton = new JButton();
-	JTextField categoryField = new JTextField();
-	questionField = new JTextField();
-	answerField = new JTextField();
-	categoryField.setPreferredSize(new Dimension(300,20));
-	questionField.setPreferredSize(new Dimension(700,30));
-	answerField.setPreferredSize(new Dimension(700,30));
+	JTextField categoryField = new JTextField(10);
+	questionField = new JTextField(10);
+	answerField = new JTextField(10);
+	categoryField.setBorder(textFieldBorder);
+	questionField.setBorder(textFieldBorder);
+	answerField.setBorder(textFieldBorder);
+
+
 
 	add(category);
-	add(box,"split2, split3");
+	add(box,"split2");
 	add(newCategory);
-	add(categoryField,"wrap");
+	add(categoryField);
+	add(categoryButton,"wrap");
 	add(questName);
 	add(questionField,"wrap");
 	add(answerName);
-	add(answerField,"wrap");
+	add(answerField);
+	add(createButton,"wrap");
+
+    }
+
+
+    @Override public void setBorder(final Border border) {
+	super.setBorder(border);
+    }
+
+
+
+    public String getQuestion() {
+	return questionField.getText();
+    }
+
+    public String getAnswer() {
+	return answerField.getText();
+    }
+
+    public String getCategory() {
+	return box.getSelectedItem().toString();
     }
 }

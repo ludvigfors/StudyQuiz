@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <questions>
+  <category name ="TDDD78">
+   <quest id="1">
+    <question>Vad heter jag</question>
+    <answer>Ludvig</answer>
+   </quest>
+  <quest id="2">
+   <question>Vad heter du</question>
+   <answer>NONAME</answer>
+  </quest>
+  </category>
+
+  <category name="TATA65">
+   <quest id="1">
+       <question>Matte</question>
+       <answer>JAA</answer>
+      </quest>
+  </category>
+ </questions>
