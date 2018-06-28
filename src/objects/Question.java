@@ -1,35 +1,29 @@
 package objects;
 
+import javax.xml.bind.annotation.*;
+
+@XmlRootElement
+
+//@XmlType
 public class Question
 {
-    private String category;
-    private String question;
+    private String query;
     private String answer;
 
-    public Question(){
-
-    }
-
-    public Question(final String category, final String question, final String answer) {
-	this.category = category;
-	this.question = question;
+    public Question(final String query, final String answer) {
+	this.query = query;
 	this.answer = answer;
     }
 
-    public String getCategory() {
-	return category;
+    public Question() {
     }
 
-    public void setCategory(final String category) {
-	this.category = category;
+    public String getQuery() {
+	return query;
     }
 
-    public String getQuestion() {
-	return question;
-    }
-
-    public void setQuestion(final String question) {
-	this.question = question;
+    public void setQuery(final String query) {
+	this.query = query;
     }
 
     public String getAnswer() {
@@ -40,3 +34,4 @@ public class Question
 	this.answer = answer;
     }
 }
+

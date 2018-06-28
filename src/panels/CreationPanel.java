@@ -1,6 +1,7 @@
 package panels;
 
 
+import mainprogram.Constants;
 import mainprogram.MainFrame;
 import net.miginfocom.swing.MigLayout;
 
@@ -32,15 +33,20 @@ public class CreationPanel extends JPanel
         displayTextFields();
     }
 
+
+
     private void displayTextFields() {
         setLayout(new MigLayout());
 
         box = new JComboBox(dummyCred);
         box.setSelectedIndex(1);
-        JButton categoryButton = new JButton("Add");
+
+        JButton categoryButton = new JButton(Constants.BUTTON_ADD);
         categoryButton.addActionListener(new ButtonClicked());
-	JButton createButton = new JButton("Create question");
+	JButton createButton = new JButton(Constants.BUTTON_CREATE);
 	createButton.addActionListener(new ButtonClicked());
+
+
         JLabel category = new JLabel("What cource?");
         JLabel newCategory = new JLabel("New Category");
         JLabel questName = new JLabel("The question");
