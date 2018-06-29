@@ -10,6 +10,38 @@
                 <answer>4</answer>
                 <query>3</query>
             </question>
+            <question>
+                <answer>ther is no question</answer>
+                <query>What is the question?</query>
+            </question>
+            <question>
+                <answer>w</answer>
+                <query>y</query>
+            </question>
+            <question>
+                <answer></answer>
+                <query></query>
+            </question>
+            <question>
+                <answer></answer>
+                <query></query>
+            </question>
+            <question>
+                <answer></answer>
+                <query></query>
+            </question>
+            <question>
+                <answer></answer>
+                <query></query>
+            </question>
+            <question>
+                <answer></answer>
+                <query></query>
+            </question>
+            <question>
+                <answer>hjjh</answer>
+                <query>gh</query>
+            </question>
         </questions>
         <name>Agents</name>
     </category>
@@ -21,5 +53,46 @@
             </question>
         </questions>
         <name>fox</name>
+    </category>
+    <category>
+        <questions/>
+        <name>hej</name>
+    </category>
+    <category>
+        <questions/>
+        <name>då</name>
+    </category>
+    <category>
+        <questions/>
+        <name>what</name>
+    </category>
+    <category>
+        <questions/>
+        <name>til</name>
+    </category>
+    <category>
+        <questions/>
+        <name>funkar</name>
+    </category>
+    <category>
+        <questions>
+            <question>
+                <answer>vad</answer>
+                <query>ungern</query>
+            </question>
+        </questions>
+        <name>nej</name>
+    </category>
+    <category>
+        <questions/>
+        <name>sommar</name>
+    </category>
+    <category>
+        <questions/>
+        <name>xml</name>
+    </category>
+    <category>
+        <questions/>
+        <name>xyz</name>
     </category>
 </root>
