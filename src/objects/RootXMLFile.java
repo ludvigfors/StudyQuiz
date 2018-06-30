@@ -30,5 +30,14 @@ public class RootXMLFile
     public void addCategory(Category newCategory){
         categories.add(newCategory);
     }
+
+    public ArrayList<Question> getCategoryQuestions(String categoryName){
+	for (Category category : categories) {
+	    if(category.getName().equals(categoryName)){
+	        return category.getQuestionList();
+	    }
+	}
+	return null; // Borde inte komma hit
+    }
 }
 

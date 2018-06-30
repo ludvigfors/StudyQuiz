@@ -1,7 +1,7 @@
 package panels;
 
 
-import mainprogram.ActionHandler;
+import handlers.ActionHandler;
 import mainprogram.Constants;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  *
  */
-public class CreationPanel extends JPanel implements CustomPanels
+public class CreationPanel extends JPanel
 {
     private final ActionHandler handler;
     private ArrayList<Category> categoryList;
@@ -139,7 +139,7 @@ public class CreationPanel extends JPanel implements CustomPanels
 	quizStartButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		handler.startQuiz();
+		handler.startQuizSelector();
 	    }
 	});
 
