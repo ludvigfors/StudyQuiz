@@ -1,4 +1,4 @@
-package mainprogram;
+package tools;
 
 import java.awt.*;
 

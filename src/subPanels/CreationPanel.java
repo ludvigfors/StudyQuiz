@@ -1,8 +1,9 @@
-package panels;
+package subPanels;
 
 
-import handlers.ActionHandler;
-import mainprogram.Constants;
+import backend_logic.QuizListener;
+import tools.Constants;
+import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
 import objects.Question;
@@ -11,15 +12,15 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  *
  */
 public class CreationPanel extends JPanel
 {
-    private final ActionHandler handler;
-    private ArrayList<Category> categoryList;
+    private final QuizListener handler = null;
+    private final StudyQuiz studyQuiz;
+    //private ArrayList<Category> categoryList;
     private JTextField categoryField;
     private static final Border TEXT_FIELD_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
     private JTextField questionField;
@@ -33,14 +34,21 @@ public class CreationPanel extends JPanel
     private JComboBox<String> categoryComboBox;
     private JButton quizStartButton;
 
-    public CreationPanel(ArrayList<Category> categoryList, ActionHandler handler) {
+   /*public CreationPanel(ArrayList<Category> categoryList, QuizListener handler) {
 	this.categoryList = categoryList;
 	this.handler = handler;
 	createComboBox();
 	createContent();
 
-    }
+    }*/
 
+    public CreationPanel(final StudyQuiz studyQuiz) {
+        this.studyQuiz = studyQuiz;
+	//this.categoryList = studyQuiz.getRootXMLClass().getCategories();
+	//this.handler = handler;
+	createComboBox();
+	createContent();
+    }
 
 
     private void createContent() {
@@ -51,23 +59,26 @@ public class CreationPanel extends JPanel
 	fillPanelWithContent();
     }
 
+   /* @Override public Dimension getPreferredSize() {
+	return Constants.PREFFERED_SIZE;
+    }*/
+
     private void createComboBox() {
 	categoryComboBox = new JComboBox<>();
-	for (Category category : categoryList) {
+	for (Category category : studyQuiz.getRootXMLClass().getCategories()) {
 	    categoryComboBox.addItem(category.getName());
 	}
     }
 
     private void updateComboBox() {
 	categoryComboBox.removeAllItems();
-	for (Category category : categoryList) {
+	for (Category category :  studyQuiz.getRootXMLClass().getCategories()) {
 	    categoryComboBox.addItem(category.getName());
 	}
 
     }
 
     private void fillPanelWithContent() {
-
 	createButtons();
 	createLables();
 	createTextFields();
@@ -111,9 +122,10 @@ public class CreationPanel extends JPanel
 	categoryButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		handler.addNewCategory(categoryField.getText());
+		//handler.addNewCategory(categoryField.getText());
+		studyQuiz.addNewCategory(categoryField.getText());
 		categoryField.setText("");
-		categoryList = handler.getCategories();
+		//categoryList = handler.getCategories();
 		updateComboBox();
 
 	    }
@@ -129,7 +141,8 @@ public class CreationPanel extends JPanel
 		if(categoryComboBox.getSelectedItem() != null && !query.isEmpty() && !answer.isEmpty()) {
 		    questionField.setText("");
 		    answerField.setText("");
-		    handler.addNewQuestion(question, categoryComboBox.getSelectedItem().toString());
+		   // handler.addNewQuestion(question, categoryComboBox.getSelectedItem().toString());
+		    studyQuiz.addNewQuestion(question,categoryComboBox.getSelectedItem().toString());
 		} else {
 		    JOptionPane.showMessageDialog(null, "Please fill all neccesary fields");
 		}
@@ -139,7 +152,8 @@ public class CreationPanel extends JPanel
 	quizStartButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		handler.startQuizSelector();
+		//handler.showQuizSelectorPanel();
+		studyQuiz.showQuizSelectorPanel();
 	    }
 	});
 

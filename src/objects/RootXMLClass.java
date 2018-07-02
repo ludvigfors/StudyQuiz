@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 @XmlRootElement(name = "root")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class RootXMLFile
+public class RootXMLClass
 {
     @XmlElement(name = "category")
     private ArrayList<Category> categories = new ArrayList<>();

@@ -1,7 +1,8 @@
-package panels;
+package subPanels;
 
-import handlers.ActionHandler;
-import mainprogram.Constants;
+import backend_logic.QuizListener;
+import tools.Constants;
+import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
 
@@ -13,24 +14,31 @@ import java.util.Objects;
 
 public class QuizPanelSelect extends JPanel
 {
-    private ActionHandler handler;
+    private StudyQuiz studyQuiz;
+    private QuizListener handler;
     private JComboBox categoryComboBox = new JComboBox();
 
-    public QuizPanelSelect(ActionHandler handler) {
+    public QuizPanelSelect(QuizListener handler) {
 	this.handler = handler;
-	displayButton();
+	createComponents();
     }
 
-    private void displayButton() {
-	JPanel p = new JPanel();
+    public QuizPanelSelect(final StudyQuiz studyQuiz) {
+	//this.handler = handler;
+	this.studyQuiz = studyQuiz;
+	createComponents();//Kanske kan kallas utanför classen
+    }
+
+    private void createComponents() {
+	JPanel p = new JPanel(); // TODO Kanske ska ändras senare
 	p.setLayout(new MigLayout());
 	//p.setBackground(Color.GREEN);
 	p.setPreferredSize(Constants.PREFFERED_SIZE);
-	JButton button = new JButton("Tillbaka");
-	button.addActionListener(new ActionListener()
+	JButton backButton = new JButton("Tillbaka");
+	backButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		handler.startCreate();
+		studyQuiz.showCreationPanel();
 	    }
 	});
 
@@ -43,11 +51,12 @@ public class QuizPanelSelect extends JPanel
 	goButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		handler.startQuizGame(Objects.requireNonNull(categoryComboBox.getSelectedItem()).toString());
+
+		studyQuiz.startQuizGame(Objects.requireNonNull(categoryComboBox.getSelectedItem()).toString());
 	    }
 	});
 
-	p.add(button, "wrap");
+	p.add(backButton, "wrap");
 	p.add(comboBoxTitle,"wrap,skip1,sg 1");
 	p.add(categoryComboBox,"wrap,skip1,sg 1");
 	p.add(goButton,"skip1,align center");

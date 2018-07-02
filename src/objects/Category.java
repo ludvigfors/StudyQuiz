@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 
-@XmlRootElement(name = "category")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Category
 {
