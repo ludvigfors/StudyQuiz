@@ -3,31 +3,34 @@ package objects;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
 
 
+/**
+ * Has a list of question objects that belongs to a specific category.
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Category
 {
     @XmlElementWrapper(name = "questions")
     @XmlElement(name = "question")
-    private ArrayList<Question> questionList;
-    private String name;
+    private List<Question> questionList = null;
+    private String name = null;
 
     public Category(final String name) {
 	this.name = name;
 	this.questionList = new ArrayList<>();
     }
 
-    public Category() {
-    }
+    public Category() {} // Used by JAXB
 
-    public ArrayList<Question> getQuestionList() {
+    public List<Question> getQuestionList() {
 	return questionList;
     }
 
-    public void setCategoryQuerys(final ArrayList<Question> bookList) {
-	this.questionList = bookList;
+    public void setQuestionList(final List<Question> questionList) {
+	this.questionList = questionList;
     }
 
     public String getName() {

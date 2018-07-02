@@ -1,12 +1,11 @@
-package subPanels;
+package sub_panels;
 
 
-import backend_logic.QuizListener;
-import tools.Constants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
 import objects.Question;
+import backend_logic.Constants;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -14,13 +13,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * The first panel you see when program starts.
+ *
+ * Displays JTextFields for creating a new question in a chosen category.
  *
  */
 public class CreationPanel extends JPanel
 {
-    private final QuizListener handler = null;
+
     private final StudyQuiz studyQuiz;
-    //private ArrayList<Category> categoryList;
     private JTextField categoryField;
     private static final Border TEXT_FIELD_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
     private JTextField questionField;
@@ -34,27 +35,29 @@ public class CreationPanel extends JPanel
     private JComboBox<String> categoryComboBox;
     private JButton quizStartButton;
 
-   /*public CreationPanel(ArrayList<Category> categoryList, QuizListener handler) {
-	this.categoryList = categoryList;
-	this.handler = handler;
-	createComboBox();
-	createContent();
-
-    }*/
+    /**
+     * Text on the button that adds a new category.
+     */
+    public static final String BUTTON_ADD_CATEGORY_TEXT = "Add";
+    /**
+     * Text on the button that creates a new question.
+     */
+    public static final String BUTTON_CREATE_TEXT = "Create question";
+    /**
+     * Text on the button that starts a quiz.
+     */
+    public static final String BUTTON_QUIZ_TEXT = "Start a quiz!!!";
 
     public CreationPanel(final StudyQuiz studyQuiz) {
-        this.studyQuiz = studyQuiz;
-	//this.categoryList = studyQuiz.getRootXMLClass().getCategories();
-	//this.handler = handler;
+	this.studyQuiz = studyQuiz;
 	createComboBox();
 	createContent();
     }
 
 
     private void createContent() {
-        setLayout(new MigLayout());
-        setPreferredSize(Constants.PREFFERED_SIZE);
-       // setBackground(Color.BLUE);
+	setLayout(new MigLayout());
+	setPreferredSize(Constants.PREFFERED_SIZE);
 	setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 	fillPanelWithContent();
     }
@@ -87,7 +90,6 @@ public class CreationPanel extends JPanel
     }
 
     private void addComponentsToMainPanel() {
-
 	add(category);
 	add(categoryComboBox, "wrap, split2");
 	add(newCategory);
@@ -118,7 +120,7 @@ public class CreationPanel extends JPanel
     }
 
     private void createButtons() {
-	categoryButton = new JButton(Constants.BUTTON_ADD_CATEGORY);
+	categoryButton = new JButton(BUTTON_ADD_CATEGORY_TEXT);
 	categoryButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
@@ -130,7 +132,7 @@ public class CreationPanel extends JPanel
 
 	    }
 	});
-	createButton = new JButton(Constants.BUTTON_CREATE);
+	createButton = new JButton(BUTTON_CREATE_TEXT);
 	createButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
@@ -141,14 +143,14 @@ public class CreationPanel extends JPanel
 		if(categoryComboBox.getSelectedItem() != null && !query.isEmpty() && !answer.isEmpty()) {
 		    questionField.setText("");
 		    answerField.setText("");
-		   // handler.addNewQuestion(question, categoryComboBox.getSelectedItem().toString());
+		    // handler.addNewQuestion(question, categoryComboBox.getSelectedItem().toString());
 		    studyQuiz.addNewQuestion(question,categoryComboBox.getSelectedItem().toString());
 		} else {
 		    JOptionPane.showMessageDialog(null, "Please fill all neccesary fields");
 		}
 	    }
 	});
-	quizStartButton = new JButton(Constants.BUTTON_QUIZ);
+	quizStartButton = new JButton(BUTTON_QUIZ_TEXT);
 	quizStartButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {

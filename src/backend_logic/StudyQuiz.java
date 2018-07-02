@@ -1,6 +1,5 @@
 package backend_logic;
 
-import tools.IDAdapter;
 import objects.Category;
 import objects.Question;
 import objects.RootXMLClass;
@@ -18,6 +17,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Here, the main logic of the program opperates.
+ *
+ * It takes in the xml file and knows which panel should be in the frame
+ * and what data it will be displaying.
+ *
+ *
+ */
 public class StudyQuiz
 {
     // General data
@@ -25,13 +32,22 @@ public class StudyQuiz
      * The XML file that stores the data
      */
     public static final String QUESTIONS_XML = "questions.xml";
+    /**
+     * Message appears if no questions wheer found for a selected category.
+     */
     public static final String MESSAGE_NO_QUESTIONS = "No questions for this category";
+    /**
+     * Index for the first question in the quiz.
+     */
     public static final int QUIZ_MIN = 0;
+    /**
+     * Index for the last question in the quiz.
+     */
     public static final int QUIZ_MAX = 10;
 
 
-    private Marshaller marshaller;
-    private Unmarshaller unmarshaller;
+    private Marshaller marshaller = null;
+    private Unmarshaller unmarshaller = null;
 
     private StudyPanel currentPanel;
     private List<QuizListener> quizListeners;
@@ -43,7 +59,7 @@ public class StudyQuiz
     private List<Question> questions = new ArrayList<>(); // The questions for one game
     private String lastSubmittedAnswer = "";
 
-    public StudyQuiz() throws JAXBException {
+    public StudyQuiz(){
 	this.quizListeners = new ArrayList<>();
 	this.currentPanel = StudyPanel.CREATION_PANEL;
 	createJAXBObjects();
@@ -51,18 +67,22 @@ public class StudyQuiz
 	notifyListeners();
     }
 
-    private void createJAXBObjects() throws JAXBException {
+    private void createJAXBObjects()  {
 	//initilize JAXB for reading and writing to xml
-	final JAXBContext context = JAXBContext.newInstance(RootXMLClass.class);
+	try {
+	    JAXBContext context = JAXBContext.newInstance(RootXMLClass.class);
 
-	//Makes it so you can write to xml file
-	marshaller = context.createMarshaller();
-	marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // HMMMM NOPE
+	    //Makes it so you can write to xml file
+	    marshaller = context.createMarshaller();
+	    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); // HMMMM NOPE
 
-	// Gives assignend xmlElement a unique id
-	marshaller.setAdapter(new IDAdapter());
-	// Makes it so you can read xml file
-	unmarshaller = context.createUnmarshaller();
+	    // Gives assignend xmlElement a unique id
+	    marshaller.setAdapter(new IDAdapter());
+	    // Makes it so you can read xml file
+	    unmarshaller = context.createUnmarshaller();
+	} catch (JAXBException e) {
+	    e.printStackTrace();
+	}
     }
 
 
@@ -126,7 +146,7 @@ public class StudyQuiz
     }
 
     private List<Question> generateTenQuestions(final String selectedCategory) {
-	ArrayList<Question> questionList = rootXMLClass.getCategoryQuestions(selectedCategory);
+	List<Question> questionList = rootXMLClass.getCategoryQuestions(selectedCategory);
 	Collections.shuffle(questionList);
 	if(questionList.size() > QUIZ_MAX){
 	    return questionList.subList(QUIZ_MIN, QUIZ_MAX);
@@ -220,6 +240,8 @@ public class StudyQuiz
     public String getLastSubmittedAnswer() {
 	return lastSubmittedAnswer;
     }
+
+
 
     public void addQuizListener(QuizListener quizListener){
 	quizListeners.add(quizListener);

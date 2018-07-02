@@ -1,32 +1,26 @@
-package subPanels;
+package sub_panels;
 
-import backend_logic.QuizListener;
-import tools.Constants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
-import objects.Question;
+import backend_logic.Constants;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
+/**
+ * Displays each question in the quiz. Maximum of 10 questions.
+ */
 public class QuestionDisplayPanel extends JPanel
 {
+
     private StudyQuiz studyQuiz;
-    //private List<Question> questions;
     private JLabel questionCount = new JLabel();
     private JLabel questionLabel = new JLabel();
-    private JTextField playerAnswer = new JTextField(12);
+    private JTextField playerAnswer = new JTextField(Constants.TEXTFIELD_COLUMNS);
 
-    //private Question currentQuestion;
 
-    public QuestionDisplayPanel(final List<Question> questions, QuizListener handler) {
-	//this.questions = questions;
-	//this.handler = handler;
-	//createPanel();
-	//showQuestion();
-    }
+
 
     public QuestionDisplayPanel(final StudyQuiz studyQuiz) {
 	this.studyQuiz = studyQuiz;

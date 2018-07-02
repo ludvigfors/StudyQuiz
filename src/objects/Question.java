@@ -1,30 +1,28 @@
 package objects;
 
-import tools.IDAdapter;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Question object consisting of the question and the answer
+ * as well as a list of accepted answers that will work as well.
+ */
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-//@XmlType
+
 public class Question
 {
-    @XmlAttribute
-    @XmlJavaTypeAdapter(IDAdapter.class)
-    private Integer id = 0;
 
-    @XmlElementWrapper(name = "goodAnswers")
+    @XmlElementWrapper(name = "acceptedAnswers")
     @XmlElement(name = "answer")
-    private ArrayList<String> goodAnswers = new ArrayList<>();
-    private String query;
-    private String answer;
+    private List<String> acceptedAnswers = new ArrayList<>();
+    private String query = null;
+    private String answer = null;
 
     public Question(final String query, final String answer) {
 	this.query = query;
@@ -32,8 +30,7 @@ public class Question
 	addGoodAnswer(answer);
     }
 
-    public Question() {
-    }
+    public Question() {}
 
     public String getQuery() {
 	return query;
@@ -51,19 +48,20 @@ public class Question
 	this.answer = answer;
     }
 
-    public ArrayList<String> getAcceptedAnswers() {
-	return goodAnswers;
+    public List<String> getAcceptedAnswers() {
+	return acceptedAnswers;
     }
 
-    public void setGoodAnswers(final ArrayList<String> goodAnswers) {
-	this.goodAnswers = goodAnswers;
+    public void setAcceptedAnswers(final List<String> acceptedAnswers) {
+	this.acceptedAnswers = acceptedAnswers;
     }
 
     public void addGoodAnswer(final String goodAnswer){
-	this.goodAnswers.add(goodAnswer);
+	this.acceptedAnswers.add(goodAnswer);
     }
 
     public Integer getId() {
+	final Integer id = Integer.valueOf(0);
 	return id;
     }
 }

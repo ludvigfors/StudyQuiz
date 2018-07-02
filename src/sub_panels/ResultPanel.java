@@ -1,4 +1,4 @@
-package subPanels;
+package sub_panels;
 
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * The panel that displays the result from a quiz.
+ */
 public class ResultPanel extends JPanel
 {
     private StudyQuiz studyQuiz;

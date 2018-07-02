@@ -1,6 +1,6 @@
-package subPanels;
+package sub_panels;
 
-import tools.Constants;
+import backend_logic.Constants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 
@@ -8,6 +8,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Displays the correct answer and the answer the user inputed.
+ *
+ * Lets the user determine if their answer was accepted.
+ */
 public class AnswerCheckPanel extends JPanel
 {
     private final StudyQuiz studyQuiz;

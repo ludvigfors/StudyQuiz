@@ -1,21 +1,17 @@
-package mainViewing;
+package main_viewing;
 
 
 import backend_logic.StudyQuiz;
-import objects.RootXMLClass;
 
 import javax.swing.*;
 import java.awt.*;
 
 
+/**
+ * The frame that contains the mainpanel.
+ */
 public class MainFrame extends JFrame
 {
-    public static final String QUESTIONS_XML = "questions.xml";
-    public static final String CREATE_CONSTRAINT = "create";
-    public static final String QUIZ_CONSTRAINT = "quiz";
-
-    private RootXMLClass rootXMLFile; // WHY NOT CHANGE??
-
     public MainFrame(final StudyQuiz studyQuiz){
 	super("Study Quiz");
 	MainPanel mainPanel = new MainPanel(studyQuiz);

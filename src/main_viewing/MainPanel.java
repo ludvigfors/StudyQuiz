@@ -1,30 +1,48 @@
-package mainViewing;
+package main_viewing;
 
 import backend_logic.QuizListener;
 import backend_logic.StudyQuiz;
 import objects.Question;
-import subPanels.AnswerCheckPanel;
-import subPanels.CreationPanel;
-import subPanels.QuestionDisplayPanel;
-import subPanels.QuizPanelSelect;
-import subPanels.ResultPanel;
+import sub_panels.AnswerCheckPanel;
+import sub_panels.CreationPanel;
+import sub_panels.QuestionDisplayPanel;
+import sub_panels.QuizSelectPanel;
+import sub_panels.ResultPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * The panel that displays all different panels.
+ *
+ * Checks which panel to display when StudyQuiz initiates notifyListeners().
+ */
 public class MainPanel extends JPanel implements QuizListener
 {
-    public static final String QUESTIONS_XML = "questions.xml";
-    public static final String CREATE_CONSTRAINT = "create";
-    public static final String QUIZ_SELECT_CONSTRAINT = "quiz";
-    public static final String QUESTION_DISPLAY_PANEL = "QPanel";
-    public static final String CHECK_PANEL = "check";
-    public static final String RESULT_PANEL = "result";
+    /**
+     * The name of the CreationPanel in the cardlayout.
+     */
+    public static final String CREATE_PANEL = "create";
+    /**
+     * The name of the QuizSelectPanel in the cardlayout.
+     */
+    public static final String QUIZ_SELECT_PANEL = "quiz";
+    /**
+     * The name of the QuestionDisplayPanel in the cardlayout.
+     */
+    public static final String QUIZ_QUESTION_DISPLAY_PANEL = "QPanel";
+    /**
+     * The name of the AnswerCheckPanel in the cardlayout.
+     */
+    public static final String QUIZ_ANSWER_CHECK_PANEL = "check";
+    /**
+     * The name of the ResultPanel in the cardlayout.
+     */
+    public static final String QUIZ_RESULT_PANEL = "result";
 
     private StudyQuiz studyQuiz;
     private CardLayout cardLayout;
-    private CreationPanel createPanel;
-    private QuizPanelSelect quizPanelSelect;
+    private QuizSelectPanel quizSelectPanel;
     private QuestionDisplayPanel questionPanel;
     private AnswerCheckPanel answerCheckPanel;
     private ResultPanel resultPanel;
@@ -38,12 +56,11 @@ public class MainPanel extends JPanel implements QuizListener
 
     private void createContent() {
 	setLayout(cardLayout);
-	createPanel = new CreationPanel(studyQuiz);
-	quizPanelSelect = new QuizPanelSelect(studyQuiz);
+	CreationPanel createPanel = new CreationPanel(studyQuiz);
+	quizSelectPanel = new QuizSelectPanel(studyQuiz);
 	createQuestionDisplay();
-	add(createPanel, CREATE_CONSTRAINT);
-	add(quizPanelSelect, QUIZ_SELECT_CONSTRAINT);
-	//cardLayout.show(this,CREATE_CONSTRAINT);
+	add(createPanel, CREATE_PANEL);
+	add(quizSelectPanel, QUIZ_SELECT_PANEL);
     }
 
     @Override public void quizChanged() {
@@ -74,17 +91,17 @@ public class MainPanel extends JPanel implements QuizListener
         Question currentQuestion = studyQuiz.getCurrentQuestion();
 	answerCheckPanel.setCorrectAnswer(currentQuestion.getAnswer());
 	answerCheckPanel.setPlayerAnswer(studyQuiz.getLastSubmittedAnswer());
-	cardLayout.show(this,CHECK_PANEL);
+	cardLayout.show(this, QUIZ_ANSWER_CHECK_PANEL);
     }
 
     private void displayResult() {
 	resultPanel.setResultCount(studyQuiz.generateResult());
-	cardLayout.show(this,RESULT_PANEL);
+	cardLayout.show(this, QUIZ_RESULT_PANEL);
     }
 
     private void updateQuestions() {
 	questionPanel.showQuestion();
-	cardLayout.show(this,QUESTION_DISPLAY_PANEL);
+	cardLayout.show(this, QUIZ_QUESTION_DISPLAY_PANEL);
     }
 
     private void createQuestionDisplay() {
@@ -95,27 +112,20 @@ public class MainPanel extends JPanel implements QuizListener
     }
 
     public void startQuizSelector() {
-	quizPanelSelect.updateComboBox(studyQuiz.getRootXMLClass().getCategories());
-	cardLayout.show(this, QUIZ_SELECT_CONSTRAINT);
+	quizSelectPanel.updateComboBox();
+	cardLayout.show(this, QUIZ_SELECT_PANEL);
     }
 
     private void addQuizPanelsToCardLayout() {
-	add(questionPanel, QUESTION_DISPLAY_PANEL);
-	add(answerCheckPanel, CHECK_PANEL);
-	add(resultPanel, RESULT_PANEL);
+	add(questionPanel, QUIZ_QUESTION_DISPLAY_PANEL);
+	add(answerCheckPanel, QUIZ_ANSWER_CHECK_PANEL);
+	add(resultPanel, QUIZ_RESULT_PANEL);
     }
-
-    private void removeQuizPanelsFromCardLayout() {
-	remove(questionPanel);
-	remove(answerCheckPanel);
-	remove(resultPanel);
-    }
-
 
 
     public void startCreate() {
 	//removeQuizPanelsFromCardLayout();
-	cardLayout.show(this,CREATE_CONSTRAINT);
+	cardLayout.show(this, CREATE_PANEL);
     }
 
 }

@@ -2,19 +2,26 @@ package objects;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * The class that represents the root of the xml document.
+ *
+ * Each category in the list of categories will be represented by a tag
+ *
+ */
 @XmlRootElement(name = "root")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RootXMLClass
 {
     @XmlElement(name = "category")
-    private ArrayList<Category> categories = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
-    public ArrayList<Category> getCategories() {
+    public List<Category> getCategories() {
 	return categories;
     }
 
-    public void setCategories(final ArrayList<Category> categories) {
+    public void setCategories(final List<Category> categories) {
 	this.categories = categories;
     }
 
@@ -31,7 +38,7 @@ public class RootXMLClass
         categories.add(newCategory);
     }
 
-    public ArrayList<Question> getCategoryQuestions(String categoryName){
+    public List<Question> getCategoryQuestions(String categoryName){
 	for (Category category : categories) {
 	    if(category.getName().equals(categoryName)){
 	        return category.getQuestionList();

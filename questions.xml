@@ -2,158 +2,95 @@
 <root>
     <category>
         <questions>
-            <question id="17">
-                <goodAnswers>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>g</query>
-                <answer>g</answer>
+            <question>
+                <acceptedAnswers/>
+                <query>Vem är NIck</query>
+                <answer>Ledare för shield</answer>
             </question>
-            <question id="18">
-                <goodAnswers>
-                    <answer>Captain America</answer>
-                    <answer>Capn america</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                    <answer>j</answer>
-                </goodAnswers>
-                <query>Vem är Steve Rogers</query>
-                <answer>Captain America</answer>
-            </question>
-            <question id="19">
-                <goodAnswers>
-                    <answer>ja</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>Är du i fred</query>
-                <answer>ja</answer>
-            </question>
-            <question id="20">
-                <goodAnswers>
-                    <answer>Daisy</answer>
-                    <answer>SKYE</answer>
-                    <answer>Skye</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>Vem är Quake</query>
-                <answer>Daisy</answer>
-            </question>
-            <question id="21">
-                <goodAnswers>
-                    <answer>eyy</answer>
-                    <answer>hj</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
                 <query>DENNA fråga</query>
                 <answer>eyy</answer>
             </question>
-            <question id="22">
-                <goodAnswers>
-                    <answer>ja</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>Är du här</query>
-                <answer>ja</answer>
+            <question>
+                <acceptedAnswers/>
+                <query>g</query>
+                <answer>g</answer>
             </question>
-            <question id="23">
-                <goodAnswers>
-                    <answer>VA</answer>
-                    <answer>va</answer>
-                    <answer>huhh</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>VA</query>
-                <answer>VA</answer>
+            <question>
+                <acceptedAnswers/>
+                <query>Vem är Steve Rogers</query>
+                <answer>Captain America</answer>
             </question>
-            <question id="24">
-                <goodAnswers>
-                    <answer>ja</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
-                <query>Är du glad</query>
-                <answer>ja</answer>
-            </question>
-            <question id="25">
-                <goodAnswers>
-                    <answer>ja</answer>
-                    <answer>g</answer>
-                </goodAnswers>
-                <query>Sista frågan</query>
-                <answer>ja</answer>
-            </question>
-            <question id="26">
-                <goodAnswers>
-                    <answer>Quake</answer>
-                    <answer>Daisy</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
                 <query>Vem är Sky</query>
                 <answer>Quake</answer>
             </question>
-            <question id="27">
-                <goodAnswers>
-                    <answer>ja</answer>
-                    <answer>er</answer>
-                    <answer>ahhh</answer>
-                    <answer>f</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
+                <query>Vem är Quake</query>
+                <answer>Daisy</answer>
+            </question>
+            <question>
+                <acceptedAnswers/>
+                <query>Är du i fred</query>
+                <answer>ja</answer>
+            </question>
+            <question>
+                <acceptedAnswers/>
+                <query>VA</query>
+                <answer>VA</answer>
+            </question>
+            <question>
+                <acceptedAnswers/>
                 <query>Är shield amerikanskt</query>
                 <answer>ja</answer>
             </question>
-            <question id="28">
-                <goodAnswers>
-                    <answer>JA</answer>
-                    <answer>ja</answer>
-                    <answer>ja</answer>
-                    <answer>ja</answer>
-                    <answer>ja</answer>
-                    <answer>ja</answer>
-                    <answer>ja</answer>
-                    <answer>jah</answer>
-                    <answer>ahh</answer>
-                    <answer>g</answer>
-                    <answer>f</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
+                <query>Är du glad</query>
+                <answer>ja</answer>
+            </question>
+            <question>
+                <acceptedAnswers/>
                 <query>Är du ett marvel fan</query>
                 <answer>JA</answer>
             </question>
-            <question id="29">
-                <goodAnswers>
-                    <answer>Ledare för shield</answer>
-                    <answer>Ledare</answer>
-                    <answer>s</answer>
-                    <answer>g</answer>
-                </goodAnswers>
-                <query>Vem är NIck</query>
-                <answer>Ledare för shield</answer>
+            <question>
+                <acceptedAnswers/>
+                <query>Sista frågan</query>
+                <answer>ja</answer>
+            </question>
+            <question>
+                <acceptedAnswers/>
+                <query>Är du här</query>
+                <answer>ja</answer>
+            </question>
+            <question>
+                <acceptedAnswers>
+                    <answer>j</answer>
+                </acceptedAnswers>
+                <query>h</query>
+                <answer>j</answer>
             </question>
         </questions>
         <name>Agents</name>
     </category>
     <category>
         <questions>
-            <question id="30">
-                <goodAnswers>
-                    <answer>f</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
                 <query>f</query>
                 <answer>f</answer>
             </question>
-            <question id="31">
-                <goodAnswers>
-                    <answer>dd</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
                 <query>gg</query>
                 <answer>dd</answer>
             </question>
-            <question id="32">
-                <goodAnswers>
-                    <answer>f</answer>
-                </goodAnswers>
+            <question>
+                <acceptedAnswers/>
                 <query>f</query>
                 <answer>f</answer>
             </question>

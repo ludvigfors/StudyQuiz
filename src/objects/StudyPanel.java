@@ -1,6 +1,30 @@
 package objects;
 
+/**
+ * Enum values that represents the different panels
+ */
 public enum StudyPanel
 {
-    CREATION_PANEL, QUIZ_SELECT_PANEL, DISPLAY_PANEL_CREATION, DISPLAY_PANEL, ANSWER_CHECK_PANEL, RESULT_PANEL
+    /**
+     * Represents CreationPanel
+     */
+    CREATION_PANEL,
+
+    /**
+     * Represents QuizSelectPanel
+     */
+    QUIZ_SELECT_PANEL,
+    /**
+     * Represents QuesitionDisplayPanel
+     */
+    DISPLAY_PANEL,
+
+    /**
+     * Represents AnswerCheckPanel
+     */
+    ANSWER_CHECK_PANEL,
+    /**
+     * Represents ResultPanel
+     */
+    RESULT_PANEL
 }

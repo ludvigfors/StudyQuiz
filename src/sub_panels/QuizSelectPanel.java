@@ -1,30 +1,24 @@
-package subPanels;
+package sub_panels;
 
-import backend_logic.QuizListener;
-import tools.Constants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
+import backend_logic.Constants;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class QuizPanelSelect extends JPanel
+/**
+ * Displays a JComboBox of all avalible categories to choose from and start a quiz on.
+ */
+public class QuizSelectPanel extends JPanel
 {
     private StudyQuiz studyQuiz;
-    private QuizListener handler;
-    private JComboBox categoryComboBox = new JComboBox();
+    private JComboBox<String> categoryComboBox = new JComboBox<>();
 
-    public QuizPanelSelect(QuizListener handler) {
-	this.handler = handler;
-	createComponents();
-    }
-
-    public QuizPanelSelect(final StudyQuiz studyQuiz) {
-	//this.handler = handler;
+    public QuizSelectPanel(final StudyQuiz studyQuiz) {
 	this.studyQuiz = studyQuiz;
 	createComponents();//Kanske kan kallas utanför classen
     }
@@ -63,9 +57,9 @@ public class QuizPanelSelect extends JPanel
 	add(p);
     }
 
-    public void updateComboBox(ArrayList<Category> categoryList) {
+    public void updateComboBox() {
 	categoryComboBox.removeAllItems();
-	for (Category category : categoryList) {
+	for (Category category : studyQuiz.getRootXMLClass().getCategories()) {
 	    categoryComboBox.addItem(category.getName());
 	}
     }
