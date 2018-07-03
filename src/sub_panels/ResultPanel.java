@@ -17,6 +17,10 @@ import static backend_logic.LanguageConstants.*;
 public class ResultPanel extends JPanel
 {
 
+    /**
+     * The font for the congratulations label.
+     */
+    public static final Font CONGRATZ_LABEL_FONT = new Font("georgia", Font.PLAIN, 30);
     private StudyQuiz studyQuiz;
     private JLabel result;
 
@@ -28,10 +32,9 @@ public class ResultPanel extends JPanel
 
     private void displayResult() {
 	setLayout(new MigLayout("debug, fillx"));
-
 	JPanel middlePanel = new JPanel(new MigLayout("gapy 10::10"));
 	JLabel congratzHeading = new JLabel(CONGRATULATIONS_LABEL_TEXT);
-	congratzHeading.setFont(new Font("georgia",Font.PLAIN,30));
+	congratzHeading.setFont(CONGRATZ_LABEL_FONT);
 	JLabel resultLabel = new JLabel(RESULT_LABEL_TEXT);
 	resultLabel.setFont(Fonts.LABEL_FONT);
 	result = new JLabel();

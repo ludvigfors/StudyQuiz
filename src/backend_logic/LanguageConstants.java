@@ -1,6 +1,9 @@
 package backend_logic;
 
-public class LanguageConstants
+/**
+ * The swedish language constants.
+ */
+public final class LanguageConstants
 {	// Creation
     /**
         * Text for the category combo box.
@@ -120,4 +123,5 @@ public class LanguageConstants
      */
         public static final String WAS_IT_CORRECT_LABEL = "Var det rätt? ";
 
+    private LanguageConstants() {}
 }
