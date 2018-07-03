@@ -1,8 +1,9 @@
 package sub_panels;
 
+import backend_logic.Fonts;
+import backend_logic.LanguageConstants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
-import backend_logic.Constants;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,54 +16,57 @@ public class QuestionDisplayPanel extends JPanel
 {
 
     private StudyQuiz studyQuiz;
-    private JLabel questionCount = new JLabel();
-    private JLabel questionLabel = new JLabel();
-    private JTextField playerAnswer = new JTextField(Constants.TEXTFIELD_COLUMNS);
-
+    private JLabel questionCount;
+    private JLabel questionLabel;
+    private JTextField playerAnswer;
+    /**
+       * The amount of columns in JTextFields on the panels.
+       */
+      public static final int TEXTFIELD_COLUMNS = 20;
 
 
 
     public QuestionDisplayPanel(final StudyQuiz studyQuiz) {
 	this.studyQuiz = studyQuiz;
+	this.questionCount = new JLabel();
+	this.questionLabel = new JLabel();
+	this.playerAnswer = new JTextField(TEXTFIELD_COLUMNS);
+	this.questionCount.setFont(Fonts.LABEL_FONT);
+	this.questionLabel.setFont(Fonts.LABEL_FONT);
+	this.playerAnswer.setFont(Fonts.TEXTFIELD_FONT);
 	createPanel();
     }
 
     public void showQuestion() {
-
 	questionCount.setText("Fråga " + (studyQuiz.getCurrentQuestionIndex() + 1) + ":");
 	questionLabel.setText(studyQuiz.getCurrentQuestion().getQuery()+"?");
-	//handler.showPanel();
     }
 
 
-
-
-
-
-
     private void createPanel() {
-	setLayout(new MigLayout());
-	setPreferredSize(Constants.PREFFERED_SIZE);
-	JButton endButton = new JButton("Avsluta");
+	setLayout(new MigLayout("fill"));
+	JButton endButton = new JButton(LanguageConstants.END_BUTTON_TEXT);
 	endButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		studyQuiz.showCreationPanel(); // HAHA....
+		studyQuiz.showCreationPanel();
 	    }
 	});
-	JButton submitButton = new JButton("Svara!");
+	JButton submitButton = new JButton(LanguageConstants.SUBMIT_BUTTON_TEXT);
 	submitButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
 		controlAnswer();
 	    }
 	});
-	add(endButton,"wrap");
-	add(questionCount, "wrap, skip1, align 50%");
-	add(questionLabel,"wrap, skip1, align 50%");
-	add(playerAnswer,"wrap, skip1, alignx center");
-	add(submitButton, "skip1, align center");
+	JPanel middlePanel = new JPanel(new MigLayout("gapy 10::10"));
 
+	add(endButton,"wrap");
+	middlePanel.add(questionCount, "wrap, sgx 1");
+	middlePanel.add(questionLabel,"wrap, sgx 1");
+	middlePanel.add(playerAnswer,"wrap, sgx 1, h 30::30");
+	middlePanel.add(submitButton, "sgx 1, h 40::40 ");
+	add(middlePanel,"pushy, align center");
 
 
     }
@@ -73,32 +77,8 @@ public class QuestionDisplayPanel extends JPanel
 	    playerAnswer.setText("");
 	    studyQuiz.checkAnswer(submittedAnswer);
 	} else{
-	    JOptionPane.showMessageDialog(null, "Fyll i ett svar");
+	    JOptionPane.showMessageDialog(null, LanguageConstants.MESSAGE_NO_ANSWER_INPUTED);
 	}
     }
-/*
-    public String getResult(){
-	return amountCorrect+"/"+questions.size();
-    }
 
-    public JLabel getQuestionLabel() {
-	return questionLabel;
-    }
-
-    public void setQuestionLabel(final JLabel questionLabel) {
-	this.questionLabel = questionLabel;
-    }
-
-    public void incrementCorrect(){
-	this.amountCorrect++;
-    }
-
-    public int getAmountCorrect() {
-	return amountCorrect;
-    }
-
-    public Question getCurrentQuestion() {
-	return currentQuestion;
-    }
-    */
 }

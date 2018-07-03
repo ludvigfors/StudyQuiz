@@ -1,12 +1,14 @@
 package sub_panels;
 
-import backend_logic.Constants;
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static backend_logic.LanguageConstants.*;
 
 /**
  * Displays the correct answer and the answer the user inputed.
@@ -15,6 +17,12 @@ import java.awt.event.ActionListener;
  */
 public class AnswerCheckPanel extends JPanel
 {
+    /**
+     * The font for the labels.
+     */
+    public static final Font ANSWER_PANEL_LABEL_FONT = new Font("georgia", Font.PLAIN, 30);
+
+
     private final StudyQuiz studyQuiz;
     private JLabel correctAnswer;
     private JLabel playerAnswer;
@@ -23,17 +31,23 @@ public class AnswerCheckPanel extends JPanel
         this.studyQuiz = studyQuiz;
         this.correctAnswer = new JLabel();
         this.playerAnswer = new JLabel();
+        this.correctAnswer.setFont(ANSWER_PANEL_LABEL_FONT);
+        this.playerAnswer.setFont(ANSWER_PANEL_LABEL_FONT);
         createPanel();
     }
 
     private void createPanel() {
-	setLayout(new MigLayout("align 50% 50%"));
-	setPreferredSize(Constants.PREFFERED_SIZE);
-	JLabel correctAnswerHeading = new JLabel("Rätt svar: ");
-	JLabel playerAnswerHeading = new JLabel("Ditt svar: ");
-	JLabel wasItCorrectHeading = new JLabel("Var det rätt? ");
-	JButton yesButton = new JButton("YES");
-	JButton noButton = new JButton("NO");
+	setLayout(new MigLayout("align 50% 50%, gapy 10::10"));
+	JLabel correctAnswerLabel = new JLabel(CORRECT_ANSWER_LABEL);
+	JLabel playerAnswerLabel = new JLabel(PLAYER_ANSWER_LABEL);
+	JLabel wasItCorrectLabel = new JLabel(WAS_IT_CORRECT_LABEL);
+
+	correctAnswerLabel.setFont(ANSWER_PANEL_LABEL_FONT);
+	playerAnswerLabel.setFont(ANSWER_PANEL_LABEL_FONT);
+	wasItCorrectLabel.setFont(ANSWER_PANEL_LABEL_FONT);
+
+	JButton yesButton = new JButton(YES_BUUTON);
+	JButton noButton = new JButton(NO_BUTTON);
 	yesButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
@@ -47,13 +61,13 @@ public class AnswerCheckPanel extends JPanel
 	    }
 	});
 
-	add(correctAnswerHeading);
+	add(correctAnswerLabel,"split");
 	add(correctAnswer, "wrap");
-	add(playerAnswerHeading);
+	add(playerAnswerLabel,"split");
 	add(playerAnswer,"wrap");
-	add(wasItCorrectHeading);
-	add(yesButton);
-	add(noButton);
+	add(wasItCorrectLabel);
+	add(yesButton,"h 40::40, sg 1, split, align center");
+	add(noButton,"sg 1");
 
     }
 

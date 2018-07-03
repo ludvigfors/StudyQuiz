@@ -1,21 +1,22 @@
 package sub_panels;
 
-
 import backend_logic.StudyQuiz;
 import net.miginfocom.swing.MigLayout;
 import objects.Category;
 import objects.Question;
-import backend_logic.Constants;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static backend_logic.Fonts.LABEL_FONT;
+import static backend_logic.Fonts.TEXTFIELD_FONT;
+import static backend_logic.LanguageConstants.*;
 
 /**
  * The first panel you see when program starts.
  *
- * Displays JTextFields for creating a new question in a chosen category.
+ * Displays JTextFields for creating a new question in a chosen categoryLabel.
  *
  */
 public class CreationPanel extends JPanel
@@ -23,30 +24,18 @@ public class CreationPanel extends JPanel
 
     private final StudyQuiz studyQuiz;
     private JTextField categoryField;
-    private static final Border TEXT_FIELD_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
     private JTextField questionField;
     private JTextField answerField;
-    private JLabel category;
-    private JLabel newCategory;
-    private JLabel questName;
-    private JLabel answerName;
-    private JButton categoryButton;
+    private JLabel categoryLabel;
+    private JLabel newCategoryLabel;
+    private JLabel questionCreationLabel;
+    private JLabel answerCreationLabel;
+    private JButton addCategoryButton;
     private JButton createButton;
     private JComboBox<String> categoryComboBox;
     private JButton quizStartButton;
 
-    /**
-     * Text on the button that adds a new category.
-     */
-    public static final String BUTTON_ADD_CATEGORY_TEXT = "Add";
-    /**
-     * Text on the button that creates a new question.
-     */
-    public static final String BUTTON_CREATE_TEXT = "Create question";
-    /**
-     * Text on the button that starts a quiz.
-     */
-    public static final String BUTTON_QUIZ_TEXT = "Start a quiz!!!";
+
 
     public CreationPanel(final StudyQuiz studyQuiz) {
 	this.studyQuiz = studyQuiz;
@@ -56,18 +45,14 @@ public class CreationPanel extends JPanel
 
 
     private void createContent() {
-	setLayout(new MigLayout());
-	setPreferredSize(Constants.PREFFERED_SIZE);
+	setLayout(new MigLayout("fillx,gapy 30::30"));
 	setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 	fillPanelWithContent();
     }
 
-   /* @Override public Dimension getPreferredSize() {
-	return Constants.PREFFERED_SIZE;
-    }*/
-
     private void createComboBox() {
 	categoryComboBox = new JComboBox<>();
+	categoryComboBox.setFont(TEXTFIELD_FONT);
 	for (Category category : studyQuiz.getRootXMLClass().getCategories()) {
 	    categoryComboBox.addItem(category.getName());
 	}
@@ -90,44 +75,50 @@ public class CreationPanel extends JPanel
     }
 
     private void addComponentsToMainPanel() {
-	add(category);
-	add(categoryComboBox, "wrap, split2");
-	add(newCategory);
-	add(categoryField);
-	add(categoryButton, "wrap");
-	add(questName);
-	add(questionField, "wrap");
-	add(answerName);
-	add(answerField,"wrap");
-	add(createButton);
-	add(quizStartButton,"skip1");
+	add(questionCreationLabel);
+	add(questionField, "wrap, pushx, growx, h 40::40");
+	add(answerCreationLabel);
+	add(answerField,"wrap,pushx, growx, h 40::40");
+	add(categoryLabel);
+	add(categoryComboBox, "wrap, pushx, growx, h 40::40");
+	add(createButton,"span2, grow,wrap, height 40::60");
+	add(newCategoryLabel);
+	add(categoryField,"pushx, growx,split2, h 40::40");
+	add(addCategoryButton, "wrap, h 40::40");
+	add(quizStartButton,"span2, pushy, grow, h 60::60, aligny top");
+
     }
 
     private void createTextFields() {
-	categoryField = new JTextField(10);
-	questionField = new JTextField(10);
-	answerField = new JTextField(10);
-	categoryField.setBorder(TEXT_FIELD_BORDER);
-	questionField.setBorder(TEXT_FIELD_BORDER);
-	answerField.setBorder(TEXT_FIELD_BORDER);
+	categoryField = new JTextField();
+	questionField = new JTextField();
+	answerField = new JTextField();
+
+
+	categoryField.setFont(TEXTFIELD_FONT);
+	questionField.setFont(TEXTFIELD_FONT);
+	answerField.setFont(TEXTFIELD_FONT);
     }
 
     private void createLables() {
-	category = new JLabel("What cource?");
-	newCategory = new JLabel("New Category");
-	questName = new JLabel("The question");
-	answerName = new JLabel("The answer");
+	categoryLabel = new JLabel(COURCE_LABEL_TEXT);
+	newCategoryLabel = new JLabel(NEW_CATEGORY_LABEL_TEXT);
+	questionCreationLabel = new JLabel(QUESTION_LABEL_TEXT);
+	answerCreationLabel = new JLabel(ANSWER_LABEL_TEXT);
+
+	categoryLabel.setFont(LABEL_FONT);
+	newCategoryLabel.setFont(LABEL_FONT);
+	questionCreationLabel.setFont(LABEL_FONT);
+	answerCreationLabel.setFont(LABEL_FONT);
     }
 
     private void createButtons() {
-	categoryButton = new JButton(BUTTON_ADD_CATEGORY_TEXT);
-	categoryButton.addActionListener(new ActionListener()
+	addCategoryButton = new JButton(BUTTON_ADD_CATEGORY_TEXT);
+	addCategoryButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		//handler.addNewCategory(categoryField.getText());
 		studyQuiz.addNewCategory(categoryField.getText());
 		categoryField.setText("");
-		//categoryList = handler.getCategories();
 		updateComboBox();
 
 	    }
@@ -143,10 +134,9 @@ public class CreationPanel extends JPanel
 		if(categoryComboBox.getSelectedItem() != null && !query.isEmpty() && !answer.isEmpty()) {
 		    questionField.setText("");
 		    answerField.setText("");
-		    // handler.addNewQuestion(question, categoryComboBox.getSelectedItem().toString());
 		    studyQuiz.addNewQuestion(question,categoryComboBox.getSelectedItem().toString());
 		} else {
-		    JOptionPane.showMessageDialog(null, "Please fill all neccesary fields");
+		    JOptionPane.showMessageDialog(null, MESSAGE_FILL_ALL_FIELDS);
 		}
 	    }
 	});
@@ -154,11 +144,9 @@ public class CreationPanel extends JPanel
 	quizStartButton.addActionListener(new ActionListener()
 	{
 	    @Override public void actionPerformed(final ActionEvent e) {
-		//handler.showQuizSelectorPanel();
 		studyQuiz.showQuizSelectorPanel();
 	    }
 	});
-
     }
 
 }

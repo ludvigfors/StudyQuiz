@@ -23,7 +23,7 @@ public class MainFrame extends JFrame
     public void showFrame(){
         pack();
         setVisible(true);
-        setResizable(false);
+        //setResizable(false);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 

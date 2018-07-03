@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static backend_logic.LanguageConstants.MEESAGE_NO_CATEGORY_INPUTED;
+
 /**
  * Here, the main logic of the program opperates.
  *
@@ -114,6 +116,8 @@ public class StudyQuiz
 	    rootXMLClass.addCategory(new Category(categoryName));
 	    writeToXMLFile();
 
+	} else{
+	    JOptionPane.showMessageDialog(null, MEESAGE_NO_CATEGORY_INPUTED);
 	}
     }
 

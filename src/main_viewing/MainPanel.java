@@ -40,6 +40,16 @@ public class MainPanel extends JPanel implements QuizListener
      */
     public static final String QUIZ_RESULT_PANEL = "result";
 
+    /**
+     * Width of window.
+     */
+    public static final int PANEL_WIDTH = 660;
+    /**
+     * Height of window.
+     */
+    public static final int PANEL_HEIGHT = 440;
+
+
     private StudyQuiz studyQuiz;
     private CardLayout cardLayout;
     private QuizSelectPanel quizSelectPanel;
@@ -87,8 +97,12 @@ public class MainPanel extends JPanel implements QuizListener
 	}
     }
 
+    @Override public Dimension getPreferredSize() {
+	return new Dimension(PANEL_WIDTH, PANEL_HEIGHT);
+    }
+
     private void displayAnswerCheck() {
-        Question currentQuestion = studyQuiz.getCurrentQuestion();
+	Question currentQuestion = studyQuiz.getCurrentQuestion();
 	answerCheckPanel.setCorrectAnswer(currentQuestion.getAnswer());
 	answerCheckPanel.setPlayerAnswer(studyQuiz.getLastSubmittedAnswer());
 	cardLayout.show(this, QUIZ_ANSWER_CHECK_PANEL);
