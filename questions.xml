@@ -1,3 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <root>
+    <category>
+        <questions>
+            <question>
+                <acceptedAnswers>
+                    <answer>eet</answer>
+                </acceptedAnswers>
+                <query>äta</query>
+                <answer>eet</answer>
+            </question>
+            <question>
+                <acceptedAnswers>
+                    <answer>slapkamer</answer>
+                </acceptedAnswers>
+                <query>sovrum</query>
+                <answer>slapkamer</answer>
+            </question>
+            <question>
+                <acceptedAnswers>
+                    <answer>hallo</answer>
+                </acceptedAnswers>
+                <query>hej</query>
+                <answer>hallo</answer>
+            </question>
+            <question>
+                <acceptedAnswers>
+                    <answer>badkamer</answer>
+                </acceptedAnswers>
+                <query>badrum</query>
+                <answer>badkamer</answer>
+            </question>
+        </questions>
+        <name>Nederlands Glosor</name>
+    </category>
 </root>
